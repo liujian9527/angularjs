@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{height: 20px; width: 50px;}
+			.red{ background: red;}
+			.yellow{ background: yellow;}
+			.box-show{ width: 100px; height: 150px; text-align: center; border: 1px solid #000000;}
+		</style>
+	</head>
+	<body>	
+	<div ng-controller='information'>
+		<div>
+			<p>姓名: <input type="text" ng-model="infor.name" /></p>
+			<p>你好，{{ infor.name }}！</p>
+			<p ng-bind="infor.name"></p>
+		</div>	
+		<div>
+			<p>姓名：{{ infor.name }} , 性别：{{ infor.sex }}</p>
+		</div>
+	</div>
+	
+	<div ng-controller='ngClass'>
+		<div class="box" ng-class="{red:isTure, yellow:isFalse}"></div>
+		<a href="javascript:;" ng-click="aTure()">红</a>
+		<a href="javascript:;" ng-click="aFalse()">黄</a>
+	</div>
+	
+	
+	<div class="" ng-controller='aShow'>
+		<a href="javascript:;" ng-click='cIsShow()'>显示|隐藏</a>
+		<div class="box-show" ng-show="isShow">
+			显示隐藏
+		</div>
+	</div>
+
+	<ul ng-init='name=[1,2,3,3]'>
+		<!--<li ng-repeat="x in name"></li>-->
+		<li ng-repeat="name in name track by $index">
+			{{name}}
+		</li>
+	</ul>
+	<ul ng-init='obj={ a:"aaa", b:"bbb", c:"ccc" }'>
+		<li ng-repeat='(key, value) in obj'>{{key}},{{value}}</li>
+	</ul>
+	
+	<ul ng-init='obj2=[{ a:"1aaa", b:"bbb"},{a:"2eee",b:"fff"},{a:"3i", b:"jjj"}]'>
+		<li ng-repeat='obj2 in obj2 | limitTo:2'>{{obj2.a}}+{{obj2.b}}</li>
+	</ul>
+	
+	<hello></hello>
+	
+	<!--
+		
+		<div ng-init="" ng-repeat="(x,y) in name" ng-bind="" ng-controller="" ng-model="" ng-show="" ng-hide="" ng-class="{red:isTure, yellow:isFalse}" ng-Click="fn()" ></div>
+		<div ng-view></div>
+	
+	-->
+	
+	<script src="js/angular-1.3.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var myApp=angular.module('myapp',[]);
+		myApp.controller('information',function($scope){
+			$scope.infor={
+				name:'刘健',
+				sex:'男'
+			}
+		})
+		myApp.controller('ngClass',function($scope){
+			$scope.isTure=false;
+			$scope.isFalse=false;
+			$scope.aTure=function(){
+				$scope.isTure=true;
+				$scope.isFalse=false;
+			}
+			$scope.aFalse=function(){
+				$scope.isTure=false;
+				$scope.isFalse=true;
+			}
+		})
+		
+		myApp.controller('aShow',function($scope){
+			$scope.isShow=false;
+			$scope.cIsShow=function(){
+				$scope.isShow=!$scope.isShow;
+			}
+		})
+		
+		myApp.directive('hello',function(){
+			return {
+				restrict:'ACEM',
+				template:'<em>123Sad</em>',
+				replace: true
+			}
+		})
+		
+		
+		
+	</script>
+	<script type="text/javascript">
+		angular.module('',['ngroute'])
+		.controller('',function($scope){
+			$scope.arr='';
+			$scope.fn=function(){
+				
+			}
+		})
+		
+		.config(['$routeProvider',function($routeProvider){
+			$routeProvider
+			.when('/',{
+				template:'这是首页'
+			})
+			.when('/computers',{
+				template:'电脑'
+			})
+			.othewise({
+				redirectTo:'/'
+			})
+		}])
+		
+		.directive('hello',function(){
+			return {
+				restrict:'AECM',
+				template:'<div></div>',
+				replace:true
+			}
+		})
+			
+		
+		.directive('hello',function(){
+			return {
+				restrict:'AECM',
+				template:'',
+				replace:true
+			}
+		})
+		.config(['$routePrvide',function($routePrvide){
+			$routePrvide
+			.when('/',{
+				template:'我是首页'
+			})
+			.when('',{})
+			.othewise({
+				redirectTo:'/'
+			})
+		}])
+		
+		/*
+		 *
+		 * */
+	</script>
+	</body>
+</html>

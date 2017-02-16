@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body ng-app="myApp">
+		<div ng-controller="myCtrl">
+			<hello howTolode='loadDate()'></hello>	
+		</div>
+		<div ng-controller="myCtrl2">
+			<hello howTolode='loadDate2()'></hello>	
+		</div>
+	</body>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.7/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var myModule=angular.module('myApp',[]);
+		myModule.controller('myCtrl',function($scope){
+			$scope.loadDate=function(){
+				console.log('加载数据中...')
+			}
+		})
+		
+		myModule.controller('myCtrl2',function($scope){
+			$scope.loadDate2=function(){
+				console.log('加载数据中2...')
+			}
+		})
+		
+		myModule.directive('hello',function(){
+			return {
+				restrict:'AEMC',
+				template:'<h1>滑动加载</h1>',
+				replace:true,
+				link:function(scope,element,attrs){
+					element.bind('mousemove',function(){
+//						scope.loadDate();
+//						scope.$apply('loadDate()')
+						scope.$apply(attrs.howtolode);
+					})
+				}
+			}
+		})
+	</script>
+</html>

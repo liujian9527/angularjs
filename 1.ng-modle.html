@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+	
+<!--<form name="myForm">
+    Email:
+    <input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+</form>
+
+<p>在输入框中输入你的邮箱地址，如果不是一个合法的邮箱地址，会弹出提示信息。</p>
+-->
+
+<form name="myForm" ng-init="myText = 'test@runoob.com'">
+
+Email:
+<input type="email" name="myAddress" ng-model="myText" required>
+<p>编辑邮箱地址，查看状态的改变。</p>
+<h1>状态</h1>
+<p>Valid: {{myForm.myAddress.$valid}} (如果输入的值是合法的则为 true)。</p>
+<p>Dirty: {{myForm.myAddress.$dirty}} (如果值改变则为 true)。</p>
+<p>Touched: {{myForm.myAddress.$touched}} (如果通过触屏点击则为 true)。</p>
+<input type="text" name="" id="" value="" ng-init="name1='aaa'" ng-model="name1" />
+<p>{{name1}}</p>
+<p ng-bind="name1"></p>
+</form>
+	<script src="js/angular-1.3.0.js" type="text/javascript" charset="utf-8"></script>
+	
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap-3.0.0/css/bootstrap.css"/>
+		<style>
+			.red{ background: red;}
+		</style>
+	</head>
+	<body ng-app="myApp" ng-controller="MainController">
+		<form name="signUpForm" ng-submit="submitForm()">
+			<div class="form-group">
+				<lable>用户名：</lable>
+				<input name="username"
+					ng-class="{'red':signUpForm.username.$invalid}"
+					 class="form-control" ng-model="username" ng-minlength="3" ng-maxlength="10"  type="text" required/>
+				<div ng-if="signUpForm.username.$invalid">你输入的信息有误？</div>
+				<div ng-if="signUpForm.username.$valid">阿萨德</div>
+				<botton class="btn btn-primary" ng-disabled="signUpForm.$invalid">提交</botton>
+				<!--<input type="text" class="form-control" ng-model="name" ng-minlength="3" ng-maxlength="10" />
+				<div>{{name}}</div>-->
+			</div>
+		</form>
+		
+	</body>
+	<script src="js/angular-1.3.0.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var myapp=angular.module('myApp',[]);
+		myapp.controller('MainController',function($scope){
+			$scope.submitForm=function(){
+				console.log('1')
+			}
+		})
+		
+	</script>
+</html>
